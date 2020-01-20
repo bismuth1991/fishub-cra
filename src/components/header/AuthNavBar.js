@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {string} from 'prop-types';
 import {
   useAuthTokenActions,
@@ -16,26 +16,23 @@ const AuthenticatedUserNav = ({user}) => {
     logout(accessToken);
   };
 
-  return useMemo(
-    () => (
-      <ul className="flex">
-        <li className="text-fishub-brand">
-          <i className="far fa-user mr-1" />
-          {user}
-        </li>
-        <li className="ml-4">
-          <form onSubmit={handleSubmit}>
-            <button
-              type="submit"
-              className="text-fishub-brand opacity-80 hover:opacity-100"
-            >
-              Logout
-            </button>
-          </form>
-        </li>
-      </ul>
-    ),
-    [user],
+  return (
+    <ul className="flex">
+      <li className="text-fishub-brand">
+        <i className="far fa-user mr-1" />
+        {user}
+      </li>
+      <li className="ml-4">
+        <form onSubmit={handleSubmit}>
+          <button
+            type="submit"
+            className="text-fishub-brand opacity-80 hover:opacity-100"
+          >
+            Logout
+          </button>
+        </form>
+      </li>
+    </ul>
   );
 };
 
