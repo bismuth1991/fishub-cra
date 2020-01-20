@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/fishub-cra/static/css/main.97fca371.chunk.css",
+    "main.js": "/fishub-cra/static/js/main.eb570935.chunk.js",
+    "main.js.map": "/fishub-cra/static/js/main.eb570935.chunk.js.map",
+    "runtime-main.js": "/fishub-cra/static/js/runtime-main.4290be39.js",
+    "runtime-main.js.map": "/fishub-cra/static/js/runtime-main.4290be39.js.map",
+    "static/js/2.6119b595.chunk.js": "/fishub-cra/static/js/2.6119b595.chunk.js",
+    "static/js/2.6119b595.chunk.js.map": "/fishub-cra/static/js/2.6119b595.chunk.js.map",
+    "index.html": "/fishub-cra/index.html",
+    "precache-manifest.1e938279b7b7b021829242a60a5bdae2.js": "/fishub-cra/precache-manifest.1e938279b7b7b021829242a60a5bdae2.js",
+    "service-worker.js": "/fishub-cra/service-worker.js",
+    "static/css/main.97fca371.chunk.css.map": "/fishub-cra/static/css/main.97fca371.chunk.css.map",
+    "static/js/2.6119b595.chunk.js.LICENSE": "/fishub-cra/static/js/2.6119b595.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4290be39.js",
+    "static/js/2.6119b595.chunk.js",
+    "static/css/main.97fca371.chunk.css",
+    "static/js/main.eb570935.chunk.js"
+  ]
+}
