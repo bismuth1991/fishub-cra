@@ -5,7 +5,7 @@ import {
   useAuthTokenState,
 } from '../context/AuthTokenContext';
 import {useUserState} from '../context/UserContext';
-import NavLink from './NavLink';
+import {NavLink} from './NavLink';
 
 const AuthenticatedUserNav = ({user}) => {
   const {logout} = useAuthTokenActions();
