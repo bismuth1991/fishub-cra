@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from '@reach/router';
-import AuthErrors from '../auth-form/AuthErrors';
+import AuthErrors from '../auth/AuthErrors';
 import {useAuthTokenActions} from '../context/AuthTokenContext';
 
 const Login = () => {
