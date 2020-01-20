@@ -1,6 +1,7 @@
 import React from 'react';
 import {Redirect} from '@reach/router';
 import {useAuthState} from '../context/AuthContext';
+import AuthErrorBoundary from './AuthErrorBoundary';
 
 const ProtectedRoute = ({children}) => {
   const {isLoading, user} = useAuthState();
@@ -10,7 +11,11 @@ const ProtectedRoute = ({children}) => {
   }
 
   if (!user) {
-    return <Redirect to="login" noThrow />;
+    return (
+      <AuthErrorBoundary>
+        <Redirect to="login" />
+      </AuthErrorBoundary>
+    );
   }
 
   return children;

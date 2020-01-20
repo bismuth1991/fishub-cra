@@ -5,7 +5,7 @@ const AuthErrors = () => {
   const {errors} = useAuthState();
 
   return (
-    <ul>
+    <ul className="text-lg mt-1">
       <li>
         {errors.map((error, index) => (
           /* eslint-disable react/no-array-index-key */

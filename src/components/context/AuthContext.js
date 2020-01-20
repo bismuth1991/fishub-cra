@@ -10,8 +10,8 @@ import {node} from 'prop-types';
 import {useAxios} from './AxiosContext';
 import useInterval from '../../utils/useInterval';
 
-const StateContext = createContext();
-const ActionsContext = createContext();
+export const StateContext = createContext();
+export const ActionsContext = createContext();
 
 export const useAuthState = () => {
   const context = useContext(StateContext);
@@ -47,6 +47,7 @@ const reducer = (state, {type, payload}) => {
     case 'SIGN_UP_ERROR':
     case 'LOGIN_ERROR':
     case 'LOGOUT_ERROR':
+    case 'CUSTOM_ERROR':
       return {
         ...state,
         ...payload,
@@ -157,7 +158,7 @@ const AuthProvider = ({children}) => {
         });
     };
 
-    return {login, signUp, logout};
+    return {login, signUp, logout, dispatch};
   }, [axios, getUser]);
 
   const keepLogin = useCallback(async () => {
