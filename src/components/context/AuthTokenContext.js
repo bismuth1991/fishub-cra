@@ -40,16 +40,19 @@ const initialState = {
 
 const reducer = (state, {type, payload}) => {
   switch (type) {
-    case 'SIGN_UP':
-    case 'KEEP_LOGIN':
-    case 'LOGIN':
+    case 'SIGN_UP_SUCCESS':
+    case 'KEEP_LOGIN_SUCCESS':
+    case 'LOGIN_SUCCESS':
       return {
         ...state,
         ...payload,
       };
-    case 'LOGOUT':
+    case 'LOGOUT_SUCCESS':
       return initialState;
-    case 'ERROR':
+    case 'SIGN_UP_ERROR':
+    case 'KEEP_LOGIN_ERROR':
+    case 'LOGIN_ERROR':
+    case 'LOGOUT_ERROR':
       return {
         ...state,
         ...payload,
@@ -69,7 +72,7 @@ const AuthTokenProvider = ({children}) => {
       .post('/api/sign-up', {username, email, password})
       .then(res => {
         dispatch({
-          type: 'SIGN_UP',
+          type: 'SIGN_UP_SUCCESS',
           payload: {
             accessToken: res.data.access_token,
             lastLogin: Date.now(),
@@ -78,7 +81,7 @@ const AuthTokenProvider = ({children}) => {
       })
       .catch(e =>
         dispatch({
-          type: 'ERROR',
+          type: 'SIGN_UP_ERROR',
           payload: {errors: e.response.data.client_error},
         }),
       );
@@ -95,7 +98,7 @@ const AuthTokenProvider = ({children}) => {
     })
       .then(res => {
         dispatch({
-          type: 'LOGIN',
+          type: 'LOGIN_SUCCESS',
           payload: {
             accessToken: res.data.access_token,
             tokenExpiresAt: Date.now() + res.data.expires_in * 1000,
@@ -104,7 +107,7 @@ const AuthTokenProvider = ({children}) => {
       })
       .catch(e =>
         dispatch({
-          type: 'ERROR',
+          type: 'LOGIN_ERROR',
           payload: {errors: e.response.data.client_error},
         }),
       );
@@ -117,7 +120,7 @@ const AuthTokenProvider = ({children}) => {
     })
       .then(res => {
         dispatch({
-          type: 'KEEP_LOGIN',
+          type: 'KEEP_LOGIN_SUCCESS',
           payload: {
             accessToken: res.data.access_token,
             tokenExpiresAt: Date.now() + res.data.expires_in * 1000,
@@ -125,7 +128,10 @@ const AuthTokenProvider = ({children}) => {
         });
       })
       .catch(() => {
-        dispatch({type: 'ERROR', payload: {isLoading: false}});
+        dispatch({
+          type: 'KEEP_LOGIN_ERROR',
+          payload: {},
+        });
       });
   };
 
@@ -138,9 +144,14 @@ const AuthTokenProvider = ({children}) => {
       },
     })
       .then(() => {
-        dispatch({type: 'LOGOUT'});
+        dispatch({type: 'LOGOUT_SUCCESS'});
       })
-      .catch(() => {});
+      .catch(() => {
+        dispatch({
+          type: 'LOGOUT_ERROR',
+          payload: {},
+        });
+      });
   };
 
   const actions = useMemo(() => ({signUp, login, logout}), []);
