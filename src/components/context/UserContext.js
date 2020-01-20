@@ -61,7 +61,7 @@ const UserProvider = ({children}) => {
           payload: {isLoading: false},
         });
       });
-  }, [accessToken]);
+  }, [accessToken, axios]);
 
   return (
     <StateContext.Provider value={state}>{children}</StateContext.Provider>

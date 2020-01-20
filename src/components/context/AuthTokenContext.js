@@ -1,5 +1,6 @@
 import React, {
   createContext,
+  useCallback,
   useContext,
   useReducer,
   useEffect,
@@ -63,53 +64,76 @@ const AuthTokenProvider = ({children}) => {
 
   const axios = useAxios();
 
-  const signUp = ({username, email, password}) => {
-    axios
-      .post('/api/sign-up', {username, email, password})
-      .then(res => {
-        dispatch({
-          type: 'SIGN_UP_SUCCESS',
-          payload: {
-            accessToken: res.data.access_token,
-            lastLogin: Date.now(),
-          },
-        });
-      })
-      .catch(e =>
-        dispatch({
-          type: 'SIGN_UP_ERROR',
-          payload: {errors: e.response.data.client_error},
-        }),
-      );
-  };
+  const actions = useMemo(() => {
+    const signUp = ({username, email, password}) => {
+      axios
+        .post('/api/sign-up', {username, email, password})
+        .then(res => {
+          dispatch({
+            type: 'SIGN_UP_SUCCESS',
+            payload: {
+              accessToken: res.data.access_token,
+              lastLogin: Date.now(),
+            },
+          });
+        })
+        .catch(e =>
+          dispatch({
+            type: 'SIGN_UP_ERROR',
+            payload: {errors: e.response.data.client_error},
+          }),
+        );
+    };
 
-  const login = ({username, password}) => {
-    axios({
-      method: 'POST',
-      url: '/api/login',
-      data: {
-        username,
-        password,
-      },
-    })
-      .then(res => {
-        dispatch({
-          type: 'LOGIN_SUCCESS',
-          payload: {
-            accessToken: res.data.access_token,
-            tokenExpiresAt: Date.now() + res.data.expires_in * 1000,
-          },
-        });
+    const login = ({username, password}) => {
+      axios({
+        method: 'POST',
+        url: '/api/login',
+        data: {
+          username,
+          password,
+        },
       })
-      .catch(e =>
-        dispatch({
-          type: 'LOGIN_ERROR',
-          payload: {errors: e.response.data.client_error},
-        }),
-      );
-  };
+        .then(res => {
+          dispatch({
+            type: 'LOGIN_SUCCESS',
+            payload: {
+              accessToken: res.data.access_token,
+              tokenExpiresAt: Date.now() + res.data.expires_in * 1000,
+            },
+          });
+        })
+        .catch(e =>
+          dispatch({
+            type: 'LOGIN_ERROR',
+            payload: {errors: e.response.data.client_error},
+          }),
+        );
+    };
 
-  const keepLogin = () => {
+    const logout = accessToken => {
+      axios({
+        method: 'POST',
+        url: '/api/logout',
+        headers: {
+          AuthTokenorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then(() => {
+          dispatch({type: 'LOGOUT_SUCCESS'});
+        })
+        .catch(() => {
+          dispatch({
+            type: 'LOGOUT_ERROR',
+            payload: {},
+          });
+        });
+    };
+
+    return {login, signUp, logout};
+  }, [axios]);
+
+  const keepLogin = useCallback(() => {
     axios({
       method: 'POST',
       url: '/api/keep-login',
@@ -129,34 +153,13 @@ const AuthTokenProvider = ({children}) => {
           payload: {},
         });
       });
-  };
-
-  const logout = accessToken => {
-    axios({
-      method: 'POST',
-      url: '/api/logout',
-      headers: {
-        AuthTokenorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then(() => {
-        dispatch({type: 'LOGOUT_SUCCESS'});
-      })
-      .catch(() => {
-        dispatch({
-          type: 'LOGOUT_ERROR',
-          payload: {},
-        });
-      });
-  };
-
-  const actions = useMemo(() => ({signUp, login, logout}), []);
+  }, [axios]);
 
   useEffect(() => {
     if (!state.accessToken || state.tokenExpiresAt - Date.now() < 60000) {
       keepLogin();
     }
-  }, []);
+  }, [keepLogin, state.accessToken, state.tokenExpiresAt]);
 
   useInterval(() => {
     if (state.accessToken) {
