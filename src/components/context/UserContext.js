@@ -38,31 +38,29 @@ const UserProvider = ({children}) => {
   const axios = useAxios();
 
   useEffect(() => {
-    if (accessToken) {
-      axios({
-        method: 'GET',
-        url: '/api/user',
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-        .then(res => {
-          dispatch({
-            type: 'GET_USER_SUCCESS',
-            payload: {
-              user: res.data.name,
-              email: res.data.email,
-              isLoading: false,
-            },
-          });
-        })
-        .catch(() => {
-          dispatch({
-            type: 'GET_USER_ERROR',
-            payload: {isLoading: false},
-          });
+    axios({
+      method: 'GET',
+      url: '/api/user',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then(res => {
+        dispatch({
+          type: 'GET_USER_SUCCESS',
+          payload: {
+            user: res.data.name,
+            email: res.data.email,
+            isLoading: false,
+          },
         });
-    }
+      })
+      .catch(() => {
+        dispatch({
+          type: 'GET_USER_ERROR',
+          payload: {isLoading: false},
+        });
+      });
   }, [accessToken]);
 
   return (
