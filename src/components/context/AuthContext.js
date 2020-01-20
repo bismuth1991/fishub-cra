@@ -83,24 +83,21 @@ const AuthProvider = ({children}) => {
   const actions = useMemo(() => {
     const signUp = async ({name, email, password}) => {
       try {
-        const accessTokenResponse = await axios({
+        const accessToken = await axios({
           method: 'POST',
           url: '/api/sign-up',
           data: {name, email, password},
         });
 
-        const userResponse = await getUser(
-          accessTokenResponse.data.access_token,
-        );
+        const user = await getUser(accessToken.data.access_token);
 
         dispatch({
           type: 'SIGN_UP_SUCCESS',
           payload: {
-            accessToken: accessTokenResponse.data.access_token,
-            tokenExpiresAt:
-              Date.now() + accessTokenResponse.data.expires_in * 1000,
-            user: userResponse.data.name,
-            email: userResponse.data.email,
+            accessToken: accessToken.data.access_token,
+            tokenExpiresAt: Date.now() + accessToken.data.expires_in * 1000,
+            user: user.data.name,
+            email: user.data.email,
           },
         });
       } catch (e) {
@@ -113,7 +110,7 @@ const AuthProvider = ({children}) => {
 
     const login = async ({username, password}) => {
       try {
-        const accessTokenResponse = await axios({
+        const accessToken = await axios({
           method: 'POST',
           url: '/api/login',
           data: {
@@ -122,18 +119,15 @@ const AuthProvider = ({children}) => {
           },
         });
 
-        const userResponse = await getUser(
-          accessTokenResponse.data.access_token,
-        );
+        const user = await getUser(accessToken.data.access_token);
 
         dispatch({
           type: 'LOGIN_SUCCESS',
           payload: {
-            accessToken: accessTokenResponse.data.access_token,
-            tokenExpiresAt:
-              Date.now() + accessTokenResponse.data.expires_in * 1000,
-            user: userResponse.data.name,
-            email: userResponse.data.email,
+            accessToken: accessToken.data.access_token,
+            tokenExpiresAt: Date.now() + accessToken.data.expires_in * 1000,
+            user: user.data.name,
+            email: user.data.email,
           },
         });
       } catch (e) {
@@ -173,7 +167,7 @@ const AuthProvider = ({children}) => {
         url: '/api/keep-login',
       });
 
-      const userResponse = await axios({
+      const user = await axios({
         method: 'GET',
         url: '/api/user',
         headers: {
@@ -186,8 +180,8 @@ const AuthProvider = ({children}) => {
         payload: {
           accessToken: authTokenResponse.data.access_token,
           tokenExpiresAt: Date.now() + authTokenResponse.data.expires_in * 1000,
-          user: userResponse.data.name,
-          email: userResponse.data.email,
+          user: user.data.name,
+          email: user.data.email,
         },
       });
     } catch (_) {
