@@ -1,12 +1,15 @@
 import React from 'react';
 import App from './App';
 import AuthTokenProvider from './context/AuthTokenContext';
+import AxiosProvider from './context/AxiosContext';
 
 const Root = () => {
   return (
-    <AuthTokenProvider>
-      <App />
-    </AuthTokenProvider>
+    <AxiosProvider>
+      <AuthTokenProvider>
+        <App />
+      </AuthTokenProvider>
+    </AxiosProvider>
   );
 };
 
