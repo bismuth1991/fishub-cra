@@ -35,6 +35,7 @@ export const useAuthTokenActions = () => {
 const initialState = {
   accessToken: '',
   accessTokenExpiresAt: Infinity,
+  errors: [],
 };
 
 const reducer = (state, {type, payload}) => {
