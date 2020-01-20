@@ -40,23 +40,19 @@ const initialState = {
 
 const reducer = (state, {type, payload}) => {
   switch (type) {
-    case 'SIGN_UP_SUCCESS':
     case 'KEEP_LOGIN_SUCCESS':
+    case 'SIGN_UP_SUCCESS':
     case 'LOGIN_SUCCESS':
-      return {
-        ...state,
-        ...payload,
-      };
-    case 'LOGOUT_SUCCESS':
-      return initialState;
-    case 'SIGN_UP_ERROR':
     case 'KEEP_LOGIN_ERROR':
+    case 'SIGN_UP_ERROR':
     case 'LOGIN_ERROR':
     case 'LOGOUT_ERROR':
       return {
         ...state,
         ...payload,
       };
+    case 'LOGOUT_SUCCESS':
+      return initialState;
     default:
       throw new Error('[AuthTokenContext] Unknown action type');
   }
