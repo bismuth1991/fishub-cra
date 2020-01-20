@@ -11,7 +11,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="container pt-12 pb-6 px-4">
         <Router>
           <Baits path="/" />
           <Baits path="baits" />
