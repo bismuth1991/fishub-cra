@@ -1,5 +1,5 @@
 import React from 'react';
-import Router from '@reach/router';
+import {Router} from '@reach/router';
 import Baits from './pages/Baits';
 import TackleBox from './pages/TackleBox';
 import Activities from './pages/Activities';
