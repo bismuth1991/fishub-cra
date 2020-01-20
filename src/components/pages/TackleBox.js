@@ -1,7 +1,12 @@
 import React from 'react';
+import ProtectedRoute from '../auth/ProtectedRoute';
 
 const TackleBox = () => {
-  return <h1>TackleBox Page</h1>;
+  return (
+    <ProtectedRoute>
+      <h1>Tackle Box Page</h1>
+    </ProtectedRoute>
+  );
 };
 
 export default TackleBox;

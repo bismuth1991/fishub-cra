@@ -1,7 +1,13 @@
 import React from 'react';
+import AuthRoute from '../auth/AuthRoute';
+import SignUpForm from '../auth/SignUpForm';
 
 const SignUp = () => {
-  return <h1>SignUp Page</h1>;
+  return (
+    <AuthRoute>
+      <SignUpForm />
+    </AuthRoute>
+  );
 };
 
 export default SignUp;

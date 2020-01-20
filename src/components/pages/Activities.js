@@ -1,7 +1,12 @@
 import React from 'react';
+import ProtectedRoute from '../auth/ProtectedRoute';
 
 const Activities = () => {
-  return <h1>Activities Page</h1>;
+  return (
+    <ProtectedRoute>
+      <h1>Activities Page</h1>
+    </ProtectedRoute>
+  );
 };
 
 export default Activities;

@@ -1,15 +1,11 @@
 import React from 'react';
 import {string} from 'prop-types';
-import {
-  useAuthTokenActions,
-  useAuthTokenState,
-} from '../context/AuthTokenContext';
-import {useUserState} from '../context/UserContext';
+import {useAuthActions, useAuthState} from '../context/AuthContext';
 import {NavLink} from './NavLink';
 
 const AuthenticatedUserNav = ({user}) => {
-  const {logout} = useAuthTokenActions();
-  const {accessToken} = useAuthTokenState();
+  const {logout} = useAuthActions();
+  const {accessToken} = useAuthState();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -54,7 +50,7 @@ const GuessNav = () => {
 };
 
 const AuthNavBar = () => {
-  const {isLoading, user} = useUserState();
+  const {isLoading, user} = useAuthState();
 
   if (isLoading) {
     return (

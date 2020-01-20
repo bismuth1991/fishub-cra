@@ -1,8 +1,8 @@
 import React from 'react';
-import {useAuthTokenState} from '../context/AuthTokenContext';
+import {useAuthState} from '../context/AuthContext';
 
 const AuthErrors = () => {
-  const {errors} = useAuthTokenState();
+  const {errors} = useAuthState();
 
   return (
     <ul>
