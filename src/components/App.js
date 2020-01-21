@@ -1,13 +1,13 @@
 import React from 'react';
 import {HashRouter, Switch, Route} from 'react-router-dom';
+import AuthRoute from './auth/AuthRoute';
+import ProtectedRoute from './auth/ProtectedRoute';
 import Baits from './pages/Baits';
 import TackleBox from './pages/TackleBox';
 import Activities from './pages/Activities';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Header from './header/Header';
-import AuthRoute from './auth/AuthRoute';
-import ProtectedRoute from './auth/ProtectedRoute';
 
 const App = () => {
   return (

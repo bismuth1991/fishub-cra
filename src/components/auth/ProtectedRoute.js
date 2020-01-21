@@ -4,8 +4,12 @@ import {func} from 'prop-types';
 import {useAuthState, useAuthActions} from '../context/AuthContext';
 
 const ProtectedRoute = ({component: Component, ...rest}) => {
-  const {user} = useAuthState();
+  const {user, isLoading} = useAuthState();
   const {dispatch} = useAuthActions();
+
+  if (isLoading) {
+    return null;
+  }
 
   /* eslint-disable react/jsx-props-no-spreading */
   return (

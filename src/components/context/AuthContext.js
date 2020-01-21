@@ -86,8 +86,8 @@ const AuthProvider = ({children}) => {
     [axios],
   );
 
-  const actions = useMemo(() => {
-    const signUp = async ({name, email, password}) => {
+  const signUp = useCallback(
+    async ({name, email, password}) => {
       try {
         const accessToken = await axios({
           method: 'POST',
@@ -112,9 +112,12 @@ const AuthProvider = ({children}) => {
           payload: {errors: e.response.data.client_error},
         });
       }
-    };
+    },
+    [axios, getUser],
+  );
 
-    const login = async ({username, password}) => {
+  const login = useCallback(
+    async ({username, password}) => {
       try {
         const accessToken = await axios({
           method: 'POST',
@@ -142,9 +145,12 @@ const AuthProvider = ({children}) => {
           payload: {errors: e.response.data.client_error},
         });
       }
-    };
+    },
+    [axios, getUser],
+  );
 
-    const logout = accessToken => {
+  const logout = useCallback(
+    accessToken => {
       axios({
         method: 'POST',
         url: '/api/logout',
@@ -161,10 +167,19 @@ const AuthProvider = ({children}) => {
             payload: {},
           });
         });
-    };
+    },
+    [axios],
+  );
 
-    return {login, signUp, logout, dispatch};
-  }, [axios, getUser]);
+  const actions = useMemo(
+    () => ({
+      login,
+      logout,
+      signUp,
+      dispatch,
+    }),
+    [login, logout, signUp],
+  );
 
   const keepLogin = useCallback(async () => {
     try {

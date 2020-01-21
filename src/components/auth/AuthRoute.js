@@ -4,7 +4,7 @@ import {func} from 'prop-types';
 import {useAuthState, useAuthActions} from '../context/AuthContext';
 
 const AuthRoute = ({component: Component, ...rest}) => {
-  const {user} = useAuthState();
+  const {user, isLoading} = useAuthState();
   const {dispatch} = useAuthActions();
 
   const history = useHistory();
@@ -14,6 +14,10 @@ const AuthRoute = ({component: Component, ...rest}) => {
       dispatch({type: 'CLEAR_ERROR'});
     }
   }, [dispatch, history.action]);
+
+  if (isLoading) {
+    return null;
+  }
 
   /* eslint-disable react/jsx-props-no-spreading */
   return (
