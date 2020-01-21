@@ -12,12 +12,15 @@ const ProtectedRoute = ({component: Component, ...rest}) => {
     <Route
       {...rest}
       render={props => {
-        dispatch({
-          type: 'CUSTOM_ERROR',
-          payload: {errors: ['You have to log in first']},
-        });
+        if (!user) {
+          dispatch({
+            type: 'CUSTOM_ERROR',
+            payload: {errors: ['You have to log in first']},
+          });
+          return <Redirect to="/login" />;
+        }
 
-        return !user ? <Redirect to="/login" /> : <Component {...props} />;
+        return <Component {...props} />;
       }}
     />
   );
