@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-// import {Link} from '@reach/router';
 import {Link} from 'react-router-dom';
 import {useAuthActions} from '../context/AuthContext';
 import AuthErrors from './AuthErrors';

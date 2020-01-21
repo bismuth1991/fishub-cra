@@ -1,31 +1,29 @@
 import React from 'react';
-import {Router, createHistory, LocationProvider} from '@reach/router';
-import createHashSource from 'hash-source';
+import {HashRouter, Switch, Route} from 'react-router-dom';
 import Baits from './pages/Baits';
 import TackleBox from './pages/TackleBox';
 import Activities from './pages/Activities';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Header from './header/Header';
+import AuthRoute from './auth/AuthRoute';
+import ProtectedRoute from './auth/ProtectedRoute';
 
 const App = () => {
-  const source = createHashSource();
-  const history = createHistory(source);
-
   return (
-    <LocationProvider history={history}>
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <Header />
       <main className="container pt-12 pb-6 px-4">
-        <Router>
-          <Baits path="/" />
-          <Baits path="baits" />
-          <TackleBox path="tackle-box" />
-          <Activities path="activities" />
-          <Login path="login" />
-          <SignUp path="sign-up" />
-        </Router>
+        <Switch>
+          <AuthRoute path="/login" component={Login} />
+          <AuthRoute path="/sign-up" component={SignUp} />
+          <ProtectedRoute path="/tackle-box" component={TackleBox} />
+          <ProtectedRoute path="/activities" component={Activities} />
+          <Route path="/baits" component={Baits} />
+          <Route path="/" component={Baits} />
+        </Switch>
       </main>
-    </LocationProvider>
+    </HashRouter>
   );
 };
 
