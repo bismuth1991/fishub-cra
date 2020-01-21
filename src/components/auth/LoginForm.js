@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Link} from '@reach/router';
+// import {Link} from '@reach/router';
+import {Link} from 'react-router-dom';
 import AuthErrors from './AuthErrors';
 import {useAuthActions} from '../context/AuthContext';
 
@@ -21,7 +22,7 @@ const LoginForm = () => {
     <form className="form" onSubmit={handleSubmit}>
       <h2 className="form__header">Login</h2>
 
-      <Link to="sign-up" className="form__redirect-link">
+      <Link to="/sign-up" className="form__redirect-link">
         Need an account?
       </Link>
 

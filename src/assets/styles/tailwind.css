@@ -30,3 +30,13 @@ body {
 .form__button:focus {
   @apply shadow-outline text-lg;
 }
+
+.nav-link {
+  @apply opacity-75 text-fishub-brand;
+}
+.nav-link:hover {
+  @apply opacity-100;
+}
+.nav-link--active {
+  @apply border-b-2 border-fishub-green opacity-100;
+}

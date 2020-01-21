@@ -8725,6 +8725,21 @@ body {
   font-size: 1.125rem;
 }
 
+.nav-link {
+  opacity: 0.75;
+  color: #e2ebf9;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+.nav-link--active {
+  border-bottom-width: 2px;
+  border-color: #94d31b;
+  opacity: 1;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;

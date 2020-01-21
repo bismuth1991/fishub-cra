@@ -58,6 +58,11 @@ const reducer = (state, {type, payload}) => {
         ...initialState,
         isLoading: false,
       };
+    case 'CLEAR_ERROR':
+      return {
+        ...state,
+        errors: [],
+      };
     default:
       throw new Error('[AuthContext] Unknown action type');
   }

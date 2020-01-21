@@ -1,19 +1,35 @@
-import React from 'react';
-import {Redirect} from '@reach/router';
-import {useAuthState} from '../context/AuthContext';
+import React, {useEffect} from 'react';
+import {Redirect, Route, useHistory} from 'react-router-dom';
+import {func} from 'prop-types';
+import {useAuthState, useAuthActions} from '../context/AuthContext';
 
-const AuthRoute = ({children}) => {
-  const {isLoading, user} = useAuthState();
+const AuthRoute = ({component: Component, ...rest}) => {
+  const {user} = useAuthState();
+  const {dispatch} = useAuthActions();
 
-  if (isLoading) {
-    return null;
-  }
+  const history = useHistory();
 
-  if (user) {
-    return <Redirect to="baits" noThrow />;
-  }
+  useEffect(() => {
+    if (history.action === 'PUSH') {
+      dispatch({type: 'CLEAR_ERROR'});
+    }
+  }, [dispatch, history.action]);
 
-  return children;
+  /* eslint-disable react/jsx-props-no-spreading */
+  return (
+    <Route
+      {...rest}
+      /* eslint-disable */
+      render={props =>
+        user ? <Redirect to="/baits" /> : <Component {...props} />
+      }
+      /* eslint-enable */
+    />
+  );
+};
+
+AuthRoute.propTypes = {
+  component: func.isRequired,
 };
 
 export default AuthRoute;

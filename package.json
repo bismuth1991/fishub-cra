@@ -12,9 +12,11 @@
     "autoprefixer": "^9.7.1",
     "axios": "^0.19.1",
     "cssnano": "^4.1.10",
+    "hash-source": "^1.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "tailwindcss": "^1.1.3"
   },

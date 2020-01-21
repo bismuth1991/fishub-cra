@@ -1,7 +1,8 @@
 import React from 'react';
 import {string} from 'prop-types';
+import {NavLink} from 'react-router-dom';
 import {useAuthActions, useAuthState} from '../context/AuthContext';
-import {NavLink} from './NavLink';
+// import {NavLink} from './NavLink';
 
 const AuthenticatedUserNav = ({user}) => {
   const {logout} = useAuthActions();
@@ -40,10 +41,24 @@ const GuessNav = () => {
   return (
     <ul className="flex">
       <li className="mr-4">
-        <NavLink to="login">Login</NavLink>
+        {/* <NavLink to="login">Login</NavLink> */}
+        <NavLink
+          to="/login"
+          className="nav-link"
+          activeClassName="nav-link--active"
+        >
+          Login
+        </NavLink>
       </li>
       <li>
-        <NavLink to="sign-up">Sign Up</NavLink>
+        {/* <NavLink to="sign-up">Sign Up</NavLink> */}
+        <NavLink
+          to="/sign-up"
+          className="nav-link"
+          activeClassName="nav-link--active"
+        >
+          Sign Up
+        </NavLink>
       </li>
     </ul>
   );
