@@ -11,7 +11,7 @@ import Header from './header/Header';
 
 const App = () => {
   return (
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
       <Header />
       <main className="container pt-12 pb-6 px-4">
         <Switch>
