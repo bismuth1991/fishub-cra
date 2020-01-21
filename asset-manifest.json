@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/fishub-cra/static/css/main.934f07a0.chunk.css",
-    "main.js": "/fishub-cra/static/js/main.b1a64271.chunk.js",
-    "main.js.map": "/fishub-cra/static/js/main.b1a64271.chunk.js.map",
+    "main.js": "/fishub-cra/static/js/main.56a828ce.chunk.js",
+    "main.js.map": "/fishub-cra/static/js/main.56a828ce.chunk.js.map",
     "runtime-main.js": "/fishub-cra/static/js/runtime-main.4290be39.js",
     "runtime-main.js.map": "/fishub-cra/static/js/runtime-main.4290be39.js.map",
     "static/js/2.07a3419c.chunk.js": "/fishub-cra/static/js/2.07a3419c.chunk.js",
     "static/js/2.07a3419c.chunk.js.map": "/fishub-cra/static/js/2.07a3419c.chunk.js.map",
     "index.html": "/fishub-cra/index.html",
-    "precache-manifest.c053da014cce629fca4eb8b398bc198c.js": "/fishub-cra/precache-manifest.c053da014cce629fca4eb8b398bc198c.js",
+    "precache-manifest.87430e836535834bfd4f1f3b28a308c9.js": "/fishub-cra/precache-manifest.87430e836535834bfd4f1f3b28a308c9.js",
     "service-worker.js": "/fishub-cra/service-worker.js",
     "static/css/main.934f07a0.chunk.css.map": "/fishub-cra/static/css/main.934f07a0.chunk.css.map",
     "static/js/2.07a3419c.chunk.js.LICENSE": "/fishub-cra/static/js/2.07a3419c.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.4290be39.js",
     "static/js/2.07a3419c.chunk.js",
     "static/css/main.934f07a0.chunk.css",
-    "static/js/main.b1a64271.chunk.js"
+    "static/js/main.56a828ce.chunk.js"
   ]
 }
