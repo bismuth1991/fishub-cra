@@ -8,6 +8,7 @@ import Activities from './pages/Activities';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Header from './header/Header';
+import Footer from './footer/Footer';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/" component={Baits} />
         </Switch>
       </main>
+      <Footer />
     </HashRouter>
   );
 };

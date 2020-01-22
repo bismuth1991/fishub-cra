@@ -13,6 +13,7 @@ module.exports = {
           primary: '#666',
           secondary: '#6c757d',
           error: '#e8890c',
+          muted: '#96a1aa',
         },
       },
       fontSize: {
