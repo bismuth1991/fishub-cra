@@ -13,7 +13,7 @@ const AuthRoute = ({component: Component, ...rest}) => {
     if (history.action === 'PUSH') {
       dispatch({type: 'CLEAR_ERROR'});
     }
-  }, [dispatch, history.action]);
+  }, [dispatch, history.action, history.length]);
 
   if (isLoading) {
     return null;
