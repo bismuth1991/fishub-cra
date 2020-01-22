@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/fishub-cra/precache-manifest.d4bfa294b4669b4483c7df4dab6b4233.js"
+  "/fishub-cra/precache-manifest.7116cf876d346a11f7c7f84b94051b16.js"
 );
 
 self.addEventListener('message', (event) => {
