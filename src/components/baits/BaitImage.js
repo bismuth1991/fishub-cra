@@ -3,7 +3,7 @@ import {string} from 'prop-types';
 
 const BaitImage = ({src, alt}) => {
   return (
-    <div className="relative h-0 pb-1/2">
+    <div className="bait relative h-0 pb-1/2">
       <img
         src={src}
         alt={alt}
