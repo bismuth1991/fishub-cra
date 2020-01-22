@@ -21,6 +21,9 @@ module.exports = {
       opacity: {
         '80': '.8',
       },
+      spacing: {
+        '1/2': '50%',
+      },
     },
   },
   variants: {},

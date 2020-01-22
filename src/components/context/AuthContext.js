@@ -92,18 +92,21 @@ const AuthProvider = ({children}) => {
         const accessToken = await axios({
           method: 'POST',
           url: '/api/sign-up',
-          data: {name, email, password},
+          data: {
+            name,
+            username: email,
+            email,
+            password,
+          },
         });
-
-        const user = await getUser(accessToken.data.access_token);
 
         dispatch({
           type: 'SIGN_UP_SUCCESS',
           payload: {
             accessToken: accessToken.data.access_token,
             tokenExpiresAt: Date.now() + accessToken.data.expires_in * 1000,
-            user: user.data.name,
-            email: user.data.email,
+            user: name,
+            email,
           },
         });
       } catch (e) {
@@ -113,7 +116,7 @@ const AuthProvider = ({children}) => {
         });
       }
     },
-    [axios, getUser],
+    [axios],
   );
 
   const login = useCallback(

@@ -8,11 +8,11 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const {signup} = useAuthActions();
+  const {signUp} = useAuthActions();
 
   const handleSubmit = e => {
     e.preventDefault();
-    signup({name: username, email, password});
+    signUp({name: username, email, password});
   };
 
   return (
