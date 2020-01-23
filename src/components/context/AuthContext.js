@@ -35,7 +35,7 @@ const initialState = {
   user: '',
   email: '',
   errors: [],
-  isLoading: true,
+  hasFetchedUser: false,
 };
 
 const reducer = (state, {type, payload}) => {
@@ -51,12 +51,12 @@ const reducer = (state, {type, payload}) => {
       return {
         ...state,
         ...payload,
-        isLoading: false,
+        hasFetchedUser: true,
       };
     case 'LOGOUT_SUCCESS':
       return {
         ...initialState,
-        isLoading: false,
+        hasFetchedUser: true,
       };
     case 'CLEAR_ERROR':
       return {

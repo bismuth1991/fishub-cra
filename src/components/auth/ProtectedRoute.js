@@ -4,10 +4,10 @@ import {func} from 'prop-types';
 import {useAuthState, useAuthActions} from '../context/AuthContext';
 
 const ProtectedRoute = ({component: Component, ...rest}) => {
-  const {user, isLoading} = useAuthState();
+  const {user, hasFetchedUser} = useAuthState();
   const {dispatch} = useAuthActions();
 
-  if (isLoading) {
+  if (!hasFetchedUser) {
     return null;
   }
 

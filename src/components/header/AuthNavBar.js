@@ -62,9 +62,9 @@ const GuessNav = () => {
 };
 
 const AuthNavBar = () => {
-  const {isLoading, user} = useAuthState();
+  const {hasFetchedUser, user} = useAuthState();
 
-  if (isLoading) {
+  if (!hasFetchedUser) {
     return (
       <p className="flex justify-end px-6 py-3 bg-fishub-nav-auth text-fishub-nav-auth">
         Loading...

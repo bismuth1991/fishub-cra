@@ -1,8 +1,8 @@
 import React from 'react';
-import {string} from 'prop-types';
+import {string, bool} from 'prop-types';
 import BaitImage from './BaitImage';
 
-const BaitCard = ({name, category, imageUrl}) => {
+const BaitCard = ({name, category, imageUrl, isSelected}) => {
   return (
     <figure className="p-4 bg-white shadow-lg mb-6 rounded border border-solid border-gray-300">
       <BaitImage src={imageUrl} alt={name} />
@@ -25,6 +25,7 @@ BaitCard.propTypes = {
   name: string.isRequired,
   category: string.isRequired,
   imageUrl: string.isRequired,
+  isSelected: bool.isRequired,
 };
 
 export default BaitCard;

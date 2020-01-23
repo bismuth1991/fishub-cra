@@ -4,7 +4,7 @@ import {func} from 'prop-types';
 import {useAuthState, useAuthActions} from '../context/AuthContext';
 
 const AuthRoute = ({component: Component, ...rest}) => {
-  const {user, isLoading} = useAuthState();
+  const {user, hasFetchedUser} = useAuthState();
   const {dispatch} = useAuthActions();
 
   const history = useHistory();
@@ -15,7 +15,7 @@ const AuthRoute = ({component: Component, ...rest}) => {
     }
   }, [dispatch, history.action, history.length]);
 
-  if (isLoading) {
+  if (!hasFetchedUser) {
     return null;
   }
 
