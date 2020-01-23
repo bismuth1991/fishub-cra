@@ -44,10 +44,8 @@ const Baits = () => {
     if (hasFetchedUser) {
       try {
         fetchData();
-      } catch (e) {
         // eslint-disable-next-line
-        console.log(e);
-      }
+      } catch (e) {}
     }
   }, [accessToken, axios, hasFetchedUser, user]);
 

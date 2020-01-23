@@ -12,6 +12,7 @@ module.exports = {
           'nav-main': '#15629d',
           primary: '#666',
           secondary: '#6c757d',
+          'secondary-dark': '#5a6268',
           error: '#e8890c',
           muted: '#96a1aa',
         },

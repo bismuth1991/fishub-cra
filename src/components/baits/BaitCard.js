@@ -1,6 +1,7 @@
 import React from 'react';
 import {string, bool} from 'prop-types';
 import BaitImage from './BaitImage';
+import BaitCardButton from './BaitCardButton';
 
 const BaitCard = ({name, category, imageUrl, isSelected}) => {
   return (
@@ -10,13 +11,7 @@ const BaitCard = ({name, category, imageUrl, isSelected}) => {
       <h3 className="text-center text-xl">{name}</h3>
       <h4 className="text-center pt-1">{category}</h4>
 
-      <button
-        type="button"
-        className="flex items-center mt-4 py-2 px-4 border border-solid border-fishub-secondary rounded-lg uppercase text-sm hover:bg-fishub-secondary hover:text-white focus:outline-none m-auto"
-      >
-        <i className="fas fa-toolbox pr-2" />
-        Tackle Box
-      </button>
+      <BaitCardButton isSelected={isSelected} />
     </figure>
   );
 };
